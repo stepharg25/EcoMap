@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>EcoMap | Mapa Interactivo</title>
+
+  <link rel="stylesheet" href="css/general.css" />
+  <link rel="stylesheet" href="css/mapa.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">♻</span>
+        <span>EcoMap</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="mapa.html" class="active">Mapa</a>
+        <a href="#buscar">Buscar</a>
+        <a href="#centros">Centros</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-primary" id="btnUbicacionHeader">
+          Usar ubicación
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="map-hero">
+      <div class="container map-hero-grid">
+
+        <div class="hero-content">
+          <span class="badge">🌎 Mapa interactivo</span>
+
+          <h1>Encuentra centros de reciclaje cerca de ti.</h1>
+
+          <p>
+            Explora centros de reciclaje, revisa horarios, direcciones,
+            materiales aceptados y ubica el punto más conveniente para reciclar.
+          </p>
+
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="btnUbicacion">
+              📍 Usar mi ubicación
+            </button>
+
+            <a href="#mapa" class="btn btn-secondary">
+              Ver mapa
+            </a>
+          </div>
+
+          <div class="stats-row">
+            <span class="stat-pill">📍 Centros registrados</span>
+            <span class="stat-pill">♻ Materiales aceptados</span>
+            <span class="stat-pill">🕒 Horarios visibles</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="map-preview">
+            <div class="marker one"></div>
+            <div class="marker two"></div>
+            <div class="marker three"></div>
+            <div class="marker four"></div>
+
+            <div class="map-panel">
+              <strong>EcoMap activo</strong>
+              <span>Centros de reciclaje en Costa Rica</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="search-section" id="buscar">
+      <div class="container">
+        <div class="search-box">
+          <div>
+            <h2>Buscar centro</h2>
+            <p>Filtra por nombre, ubicación o material aceptado.</p>
+          </div>
+
+          <input
+            type="text"
+            id="buscarCentro"
+            placeholder="Ejemplo: plástico, vidrio, San José..."
+          />
+        </div>
+      </div>
+    </section>
+
+    <section class="map-section" id="mapa">
+      <div class="container map-layout">
+
+        <aside class="side-panel" id="centros">
+          <div class="side-header">
+            <h2>Centros registrados</h2>
+            <p>Selecciona un centro para verlo directamente en el mapa.</p>
+          </div>
+
+          <div id="listaCentros" class="lista-centros"></div>
+        </aside>
+
+        <div class="map-card">
+          <div id="mapaInteractivo"></div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <p>© 2026 EcoMap. Todos los derechos reservados.</p>
+      <p>Reciclar hoy, cuidar mañana.</p>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/mapa.js"></script>
+
+</body>
+</html>
