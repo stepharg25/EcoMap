@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoMap | Centros de Reciclaje</title>
+  <link rel="stylesheet" href="css/general.css" />
+  <link rel="stylesheet" href="css/centros.css" />
+</head>
+
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">♻</span>
+        <span>EcoMap</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Inicio</a>
+        <a href="mapa.html">Mapa</a>
+        <a href="centros.html" class="active">Centros</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="mapa.html" class="btn btn-primary">Ver mapa</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Sección de bienvenida -->
+    <section class="centros-hero">
+      <div class="container">
+        <span class="badge">🔎 Buscador de centros</span>
+        <h1>Encuentra el centro ideal para reciclar.</h1>
+        <p>
+          Filtra por nombre, dirección o tipo de material. Consulta horarios
+          y toda la información que necesitas antes de ir.
+        </p>
+      </div>
+    </section>
+
+    <!-- Buscador y filtros -->
+    <section class="buscar-section">
+      <div class="container">
+
+        <div class="buscar-box">
+          <input
+            type="text"
+            id="inputBuscar"
+            placeholder="Buscar por nombre, dirección o material..."
+          />
+        </div>
+
+        <div class="filtros-area">
+          <p class="filtros-label">Filtrar por material:</p>
+          <div id="filtrosMaterial" class="filtros-lista">
+            <!-- Los botones se generan con JavaScript -->
+          </div>
+        </div>
+
+        <p id="contadorResultados" class="contador-text"></p>
+
+      </div>
+    </section>
+
+    <!-- Fichas de centros -->
+    <section class="resultados-section">
+      <div class="container">
+        <div id="listaFichas" class="fichas-grid">
+          <!-- Las fichas se cargan con JavaScript -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <p>© 2026 EcoMap. Todos los derechos reservados.</p>
+      <p>Reciclar hoy, cuidar mañana.</p>
+    </div>
+  </footer>
+
+  <script src="js/centros.js"></script>
+
+</body>
+</html>

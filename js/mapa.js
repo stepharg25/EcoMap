@@ -187,7 +187,7 @@ fetch("data/centros.js")
       throw new Error("No se pudo cargar el archivo centros.json");
     }
 
-    return respuesta.js();
+    return respuesta.json();
   })
   .then((data) => {
     centros = data;
