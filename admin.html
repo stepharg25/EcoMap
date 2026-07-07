@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoMap | Panel Administrativo</title>
+  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+  <!-- LOGIN SECTION -->
+  <div id="loginContainer" class="login-wrapper">
+    <div class="login-card">
+      <div class="login-header">
+        <h1><span class="brand-icon">♻</span> EcoMap Admin</h1>
+        <p>Sistema de Gestión de Centros de Reciclaje</p>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="email">Correo Electrónico</label>
+          <input type="email" id="email" name="email" placeholder="admin@ecomap.com" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input type="password" id="password" name="password" placeholder="Ingrese su contraseña" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full">Iniciar Sesión</button>
+
+        <div class="login-footer">
+          <p>Demo: admin@ecomap.com | 123456</p>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div id="adminContainer" class="admin-wrapper" style="display: none;">
+    <header>
+      <div class="container nav">
+        <a href="index.html" class="brand"><span class="brand-icon">♻</span><span>EcoMap</span></a>
+
+        <nav class="nav-links">
+          <a href="index.html">Inicio</a>
+          <a href="mapa.html">Mapa</a>
+          <a href="centros.html">Centros</a>
+          <a href="#admin" class="active">Administrar</a>
+        </nav>
+
+        <div class="nav-actions">
+          <span class="user-info">👤 <span id="userDisplay">Admin</span></span>
+          <button id="logoutBtn" class="btn btn-secondary">Cerrar sesión</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="container admin-container">
+        <!-- SIDEBAR -->
+        <aside class="admin-sidebar">
+          <nav class="sidebar-nav">
+            <div class="nav-item active" data-tab="dashboard">
+              <span class="icon">📊</span>
+              <span>Panel</span>
+            </div>
+            <div class="nav-item" data-tab="centros">
+              <span class="icon">🗂</span>
+              <span>Gestionar Centros</span>
+            </div>
+            <div class="nav-item" data-tab="agregar">
+              <span class="icon">➕</span>
+              <span>Nuevo Centro</span>
+            </div>
+            <div class="nav-item" data-tab="estadisticas">
+              <span class="icon">📈</span>
+              <span>Estadísticas</span>
+            </div>
+          </nav>
+        </aside>
+
+        <!-- CONTENT -->
+        <section class="admin-content">
+          
+          <!-- DASHBOARD TAB -->
+          <div class="tab-content active" id="dashboard">
+            <div class="content-header">
+              <h1>Panel de Control</h1>
+              <p>Bienvenido al panel de administración de EcoMap</p>
+            </div>
+
+            <div class="dashboard-grid">
+              <div class="stat-card">
+                <div class="stat-icon">🏢</div>
+                <div class="stat-info">
+                  <p class="stat-label">Total de Centros</p>
+                  <p class="stat-value" id="totalCentros">5</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-icon">📍</div>
+                <div class="stat-info">
+                  <p class="stat-label">Centros Activos</p>
+                  <p class="stat-value" id="centrosActivos">5</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-icon">📅</div>
+                <div class="stat-info">
+                  <p class="stat-label">Última Actualización</p>
+                  <p class="stat-value" id="ultimaActualizacion">Hoy</p>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-icon">♻</div>
+                <div class="stat-info">
+                  <p class="stat-label">Tipos de Material</p>
+                  <p class="stat-value">18+</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="quick-actions-admin">
+              <h3>Acciones Rápidas</h3>
+              <div class="actions-grid">
+                <button class="action-btn" data-tab="agregar">
+                  <span>➕</span>
+                  <span>Agregar Centro</span>
+                </button>
+                <button class="action-btn" data-tab="centros">
+                  <span>📋</span>
+                  <span>Ver Todos</span>
+                </button>
+                <button class="action-btn" data-tab="estadisticas">
+                  <span>📊</span>
+                  <span>Reportes</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- GESTIONAR CENTROS TAB -->
+          <div class="tab-content" id="centros">
+            <div class="content-header">
+              <h1>Gestionar Centros de Reciclaje</h1>
+              <button class="btn btn-primary" data-tab="agregar">➕ Nuevo Centro</button>
+            </div>
+
+            <div class="search-bar">
+              <input type="text" id="searchCentros" placeholder="Buscar por nombre, dirección...">
+              <button class="btn btn-secondary">🔍</button>
+            </div>
+
+            <div class="table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Horario</th>
+                    <th>Materiales</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody id="centrosTableBody">
+                  <!-- Rows populated by JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- AGREGAR/EDITAR CENTRO TAB -->
+          <div class="tab-content" id="agregar">
+            <div class="content-header">
+              <h1 id="formTitle">Nuevo Centro de Reciclaje</h1>
+            </div>
+
+            <div class="form-container">
+              <form id="centroForm" class="centro-form">
+                <input type="hidden" id="centroId">
+
+                <div class="form-section">
+                  <h3>Información General</h3>
+                  
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="nombre">Nombre del Centro *</label>
+                      <input type="text" id="nombre" name="nombre" placeholder="Centro de Reciclaje..." required>
+                    </div>
+                    <div class="form-group">
+                      <label for="direccion">Dirección *</label>
+                      <input type="text" id="direccion" name="direccion" placeholder="Calle, número, ciudad..." required>
+                    </div>
+                  </div>
+
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="horario">Horario de Atención *</label>
+                      <input type="text" id="horario" name="horario" placeholder="Lunes a viernes, 8:00 a.m. - 5:00 p.m." required>
+                    </div>
+                    <div class="form-group">
+                      <label for="contacto">Teléfono/Contacto</label>
+                      <input type="text" id="contacto" name="contacto" placeholder="+506 XXXX-XXXX">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-section">
+                  <h3>Ubicación Geográfica</h3>
+                  
+                  <div class="form-row">
+                    <div class="form-group">
+                      <label for="latitud">Latitud *</label>
+                      <input type="number" id="latitud" name="latitud" step="0.0001" placeholder="9.9281" required>
+                    </div>
+                    <div class="form-group">
+                      <label for="longitud">Longitud *</label>
+                      <input type="number" id="longitud" name="longitud" step="0.0001" placeholder="-84.0907" required>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-section">
+                  <h3>Materiales Aceptados</h3>
+                  
+                  <div class="materials-grid">
+                    <label class="checkbox-group">
+                      <input type="checkbox" name="materiales" value="Papel">
+                      <span>📄 Papel</span>
+                    </label>
+                    <label class="checkbox-group">
+                      <input type="checkbox" name="materiales" value="Cartón">
+                      <span>📦 Cartón</span>
+                    </label>
+                    <label class="checkbox-group">
+                      <input type="checkbox" name="materiales" value="Plástico">
+                      <span>♻️ Plástico</span>
+                    </label>
+                    <label class="checkbox-group">
+                      <input type="checkbox" name="materiales" value="Vidrio">
+                      <span>🥃 Vidrio</span>
+                    </label>
+                    <label class="checkbox-group">
+                      <input type="checkbox" name="materiales" value="Aluminio">
+                      <span>🥫 Aluminio</span>
+                    </label>
+                    <label class="checkbox-group">
+                      <input type="checkbox" name="materiales" value="Latas">
+                      <span>🛢 Latas</span>
+                    </label>
+                    <label class="checkbox-group">
+                      <input type="checkbox" name="materiales" value="Electrónicos">
+                      <span>💻 Electrónicos</span>
+                    </label>
+                    <label class="checkbox-group">
+                      <input type="checkbox" name="materiales" value="Baterías">
+                      <span>🔋 Baterías</span>
+                    </label>
+                    <label class="checkbox-group">
+                      <input type="checkbox" name="materiales" value="Metal">
+                      <span>⚙️ Metal</span>
+                    </label>
+                    <label class="checkbox-group">
+                      <input type="checkbox" name="materiales" value="Ropa">
+                      <span>👕 Ropa</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-section">
+                  <h3>Información Adicional</h3>
+                  
+                  <div class="form-group">
+                    <label for="observaciones">Observaciones o Requisitos</label>
+                    <textarea id="observaciones" name="observaciones" placeholder="Información adicional sobre horarios especiales, requisitos de entrega, etc." rows="4"></textarea>
+                  </div>
+                </div>
+
+                <div class="form-actions">
+                  <button type="submit" class="btn btn-primary">💾 Guardar Centro</button>
+                  <button type="reset" class="btn btn-secondary">🔄 Limpiar Formulario</button>
+                  <button type="button" class="btn btn-secondary" data-tab="centros">🔙 Volver</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- ESTADÍSTICAS TAB -->
+          <div class="tab-content" id="estadisticas">
+            <div class="content-header">
+              <h1>Estadísticas y Reportes</h1>
+            </div>
+
+            <div class="stats-container">
+              <div class="stat-section">
+                <h3>Resumen General</h3>
+                <div class="stats-grid">
+                  <div class="stat-box">
+                    <p class="stat-label">Total de Registros</p>
+                    <p class="stat-value" id="statTotalRegistros">5</p>
+                  </div>
+                  <div class="stat-box">
+                    <p class="stat-label">Centros por Región</p>
+                    <p class="stat-value" id="statRegiones">5</p>
+                  </div>
+                  <div class="stat-box">
+                    <p class="stat-label">Materiales Comunes</p>
+                    <p class="stat-value" id="statMateriales">18</p>
+                  </div>
+                  <div class="stat-box">
+                    <p class="stat-label">Cobertura</p>
+                    <p class="stat-value">100%</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="stat-section">
+                <h3>Materiales Más Aceptados</h3>
+                <div id="materialesChart" class="chart-container">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+
+              <div class="stat-section">
+                <h3>Información de Horarios</h3>
+                <div id="horariosInfo" class="info-table">
+                  <!-- Populated by JS -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- MODAL PARA ELIMINAR -->
+  <div id="deleteModal" class="modal">
+    <div class="modal-content">
+      <h2>⚠️ Eliminar Centro</h2>
+      <p>¿Está seguro de que desea eliminar este centro de reciclaje? Esta acción no se puede deshacer.</p>
+      <div class="modal-actions">
+        <button id="confirmDelete" class="btn btn-primary">Eliminar</button>
+        <button id="cancelDelete" class="btn btn-secondary">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL PARA MENSAJES -->
+  <div id="messageModal" class="modal">
+    <div class="modal-content modal-message">
+      <span id="messageIcon" class="message-icon">✓</span>
+      <h2 id="messageTitle">Éxito</h2>
+      <p id="messageText"></p>
+      <button id="closeMessage" class="btn btn-primary">Aceptar</button>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container footer-grid">
+      <p>© 2026 EcoMap. Panel Administrativo.</p>
+      <p>Gestión de centros de reciclaje.</p>
+    </div>
+  </footer>
+
+  <script src="data/centros.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
